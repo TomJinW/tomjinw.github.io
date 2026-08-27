@@ -3,24 +3,28 @@
     <head>
         <meta charset='UTF-8'>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#ef5350">
         <title>宝可梦 金银 韩版汉化版/韩版文字转换工具</title>
         <link rel="stylesheet" href="resources/main.css">
-        <script src="resources/main.js"></script>
+        <script src="resources/main.js" defer></script>
     </head>
     <body>
-        <h1 id='title'>宝可梦 金银 韩版汉化版/韩版文字转换工具</h1>
+        <header class="site-header"><a class="brand" href="index.html"><span class="brand-ball"></span><span>GSC Tools</span></a><nav><a class="nav-link active" href="index.html">文字转换</a><a class="nav-link" href="clock.html">时钟密码</a></nav></header>
+        <main class="page-shell">
+        <section class="hero"><div class="eyebrow">Pokémon Gold · Silver</div><h1 id='title'>韩版文字转换工具</h1><p>在中文、韩文与游戏输入码之间快速转换。所有计算均在浏览器本地完成。</p></section>
+        <section class="legacy-links">
+        <h2>时钟重置工具</h2>
         关于时钟重置/获取时钟重置密码：
         <br>
-        <a href="clock.html" target="_blank">韩版汉化金银请前往这里</a>
+        <a href="clock.html">韩版汉化金银请前往这里</a>
         <br>
-        <a href="https://bl4cksh4rk.github.io/Pokemon-GSC-Clock-Password-Generator/" target="_blank">韩版/欧美原版游戏请前往这里</a>
+        <a href="https://bl4cksh4rk.github.io/Pokemon-GSC-Clock-Password-Generator/" target="_blank" rel="noopener noreferrer">韩版/欧美原版游戏请前往这里</a>
         <br>
-        <a href="https://codepen.io/sndream/pen/mdrEoEr" target="_blank">美版汉化金/银/水晶请前往这里</a>
-        <br>
-        <br>
-        <div class="div-main">
+        <a href="https://codepen.io/sndream/pen/mdrEoEr" target="_blank" rel="noopener noreferrer">美版汉化金/银/水晶请前往这里</a>
+        </section>
+        <section class="converter-card"><div class="div-main">
             <div class="div-io">
-                <label for="inputText">输入文本</label>
+                <div class="field-heading"><label for="inputText">输入文本</label><span>中文或韩文</span></div>
                 <br>
                 <textarea id='inputText' rows='30' cols='50'>宝可梦</textarea>
             </div>
@@ -30,13 +34,13 @@
                 <button onclick='getChinese()' type='button'>转换成对应中文</button>
             </div>
             <div class="div-io">
-                <label for="result">输出结果</label>
+                <div class="field-heading"><label for="result">输出结果</label><span>转换结果</span></div>
                 <br>
-                <textarea id='result' rows='30' cols='50'>{宝:P U D}{可:A g H}{梦:A r E}</textarea>    
-            </div>    
-        </div>
+                <textarea id='result' rows='30' cols='50'>{宝:P U D}{可:A g H}{梦:A r E}</textarea>
+            </div>
+        </div></section>
         <div class="div-table">
-            <button id="btnShowTable" type="button" onclick="showTable()">修改码表</button>
+            <button id="btnShowTable" type="button" onclick="showTable()">高级设置 · 修改码表</button>
             <div id="tableContainer" style="display: none;">
                 <label for='codeTable'>码表 非必要请勿修改</label>
                 <br>
@@ -2373,6 +2377,6 @@
 翠,힛,O d G
                 </textarea>
             </div>
-        </div>
+        </div></main><footer>为宝可梦 金 / 银韩版相关项目制作 · 静态页面，无数据上传</footer>
     </body>
 </html>

@@ -3,79 +3,39 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="theme-color" content="#ef5350">
         <title>GSC Clock Password Generator</title>
         <script type="text/javascript" src="resources/script.js" ></script>
         <script type="text/javascript" src="resources/password.js"></script>
         <link rel="stylesheet" type="text/css" href="resources/style.css">
     </head>
     <body class="cursorDefault">
-        <h1>宝可梦·金银水晶时钟重置密码生成器</h1>
-        <h4>源代码来自 <a href="https://bl4cksh4rk.github.io/Pokemon-GSC-Clock-Password-Generator/" target="_blank">https://bl4cksh4rk.github.io/Pokemon-GSC-Clock-Password-Generator/</a></h4>
-        <h4>根据源工程 GPLv3 协议，本页面源代码<a href="tomjinw.github.io/clock-src.zip" target="_blank">下载地址</a></h4>
-        <h3>生成的密码适用于：</h3>
-        - 韩版，韩版汉化版：金、银
-        <br>
-        - 欧美版：金、银、水晶
-        <br>
-        <a href="https://codepen.io/sndream/pen/mdrEoEr" target="_blank">- CKN&口袋群星&DMG汉化版水晶，新美版汉化版金/银：请前往这里重置</a>
-        <br>
-        <br>
-        <br>
-        <table align="center">
-            <tr>
-                <td>
-                    训练家名称
-                </td>
-                <td>
-                    <input type="text" class="input" id="name" maxlength="7">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    训练家 ID
-                </td>
-                <td>
-                    <input type="text" class="input" id="tid" maxlength="5">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    手持零花钱
-                </td>
-                <td>
-                    <input type="text" class="input" id="money" maxlength="6">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    游戏区域
-                </td>
-                <td>
-                    <label class="cursorPointer">
-                        <input type="radio" name="region" id="eur" checked>欧美版
-                    </label>
-                    <br>
-                    <label class="cursorPointer">
-                        <input type="radio" name="region" id="kor">韩版 / 韩版汉化
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" id="generateButtonRow">
-                    <input type="button" value="生成密码" onClick="generatePassword();" class="cursorPointer">
-                </td>
-            </tr>
-            <tr>
-                <td class="resultBox">
-                    密码：
-                </td>
-                <td class="resultBox">
-                    <span id="password"></span>
-                </td>
-            </tr>
-        </table>
+        <header class="site-header"><a class="brand" href="index.html"><span class="brand-ball"></span><span>GSC Tools</span></a><nav><a class="nav-link" href="index.html">文字转换</a><a class="nav-link active" href="clock.html">时钟密码</a></nav></header>
+        <main class="page-shell">
+        <section class="hero"><div class="eyebrow">Clock reset utility</div><h1>时钟重置密码生成器</h1><p>输入存档中的训练家信息，在本地生成五位重置密码。</p></section>
+        <section class="compatibility"><strong>适用版本</strong><span>韩版 / 韩版汉化版：金、银</span><span>欧美版：金、银、水晶</span><a href="https://codepen.io/sndream/pen/mdrEoEr" target="_blank" rel="noopener noreferrer">CKN·DMG·口袋群星汉化水晶/美版汉化金·银 ↗</a></section>
+        <section class="generator-card">
+            <div class="form-grid">
+                <label class="field-label" for="name"><span>训练家名称</span><small>最多 7 个字符</small></label>
+                <input type="text" class="input" id="name" maxlength="7" autocomplete="off">
 
-        <div id="instructions" onClick="showHide('instructionsContent');" class="cursorPointer">
+                <label class="field-label" for="tid"><span>训练家 ID</span><small>0–65535</small></label>
+                <input type="text" inputmode="numeric" class="input" id="tid" maxlength="5" autocomplete="off">
+
+                <label class="field-label" for="money"><span>手持零花钱</span><small>0–999999</small></label>
+                <input type="text" inputmode="numeric" class="input" id="money" maxlength="6" autocomplete="off">
+
+                <div class="field-label"><span>游戏区域</span><small>选择存档版本</small></div>
+                <div class="region-options">
+                    <label class="region-option cursorPointer"><input type="radio" name="region" id="eur" checked><span>欧美版<small>金 / 银 / 水晶</small></span></label>
+                    <label class="region-option cursorPointer"><input type="radio" name="region" id="kor"><span>韩版 / 韩版汉化<small>金 / 银</small></span></label>
+                </div>
+            </div>
+            <button type="button" id="generateButton" onClick="generatePassword();" class="cursorPointer">生成密码</button>
+            <div class="result-panel"><span>重置密码</span><strong id="password" aria-live="polite">— — — — —</strong></div>
+        </section>
+
+        <div id="instructions" onClick="showHide('instructionsContent');" class="cursorPointer" role="button" tabindex="0">
             如何进入重置页面 
             <span id="hide">
                 显示/隐藏
@@ -122,5 +82,7 @@
                 </span>
             </div>
         </div>
+        <div class="credits">基于 <a href="https://bl4cksh4rk.github.io/Pokemon-GSC-Clock-Password-Generator/" target="_blank" rel="noopener noreferrer">bl4cksh4rk 的原项目</a>（GPLv3）· <a href="clock-src.zip" download>下载源代码</a></div>
+        </main><footer>所有计算均在浏览器本地完成，无数据上传</footer>
     </body>
-</html> 
+</html>
