@@ -197,3 +197,6 @@ function tick(now){const dt=Math.min((now-last)/1000,.04);last=now;if(state!=='l
 updateConnection();resize();requestAnimationFrame(tick);
 
 if(window.desktopApp){document.body.classList.add('desktop');document.querySelectorAll('.browser-note').forEach(el=>el.hidden=true);window.desktopApp.onBeforeQuit(async()=>{pauseGame();await closeDevice();});}
+
+// Keep native long-press menus and text selection off game buttons.
+for(const eventName of ['contextmenu','selectstart'])document.addEventListener(eventName,event=>{if(event.target?.closest?.('button'))event.preventDefault();});
