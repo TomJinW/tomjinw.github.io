@@ -6,7 +6,7 @@ import {FinishVerdicts,finishTitle} from './finish-verdict.mjs?v=29';
 import {nearMissReward,failureReport,BrakeReplay} from './round-extras.mjs?v=30';
 import {downloadScore} from './score-image.mjs?v=32';
 import {RandomResistance} from './trigger-resistance.mjs?v=25';
-import {MenuNavigation,navigationState} from './menu-navigation.mjs';
+import {MenuNavigation,navigationState} from './menu-navigation.mjs?v=36';
 import {DEVICE_LABELS,inputCategory,readBest,recordBest} from './records.mjs?v=16';
 import {rawInput,mappedInput,defaultBinding,actuator,Rumble} from './gamepad.mjs?v=30';
 import {usbReport,usbInput,hasUsbOutput,LatestWriter} from './protocol.mjs';
