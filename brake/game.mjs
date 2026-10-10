@@ -130,6 +130,13 @@ const menuNav=new MenuNavigation({source:menuSource,back:menuBack,pause:()=>paus
 window.addEventListener('keydown',e=>{if(menuNav.key(e))return;if(e.code==='Space'){if(!['run','countdown'].includes(state))return;e.preventDefault();held=true;}if(e.code==='Escape')pauseGame();if(e.code==='Enter'&&['ready','result','failed','limit'].includes(state)&&$('settings').hidden){e.preventDefault();start();}});
 window.addEventListener('keyup',e=>{if(e.code==='Space'){held=false;e.preventDefault();}});
 const bb=$('brakeButton');bb.addEventListener('pointerdown',e=>{held=true;bb.setPointerCapture(e.pointerId);e.preventDefault();});for(const name of ['pointerup','pointercancel','lostpointercapture'])bb.addEventListener(name,()=>held=false);
+// Cancel native touch selection directly; pointer events alone do not cover every mobile long press.
+function clearBrakeSelection(){const selection=window.getSelection();if(selection&&[selection.anchorNode,selection.focusNode].some(node=>node&&bb.contains(node)))selection.removeAllRanges();}
+bb.addEventListener('touchstart',event=>{if(event.cancelable)event.preventDefault();held=true;clearBrakeSelection();},{passive:false});
+bb.addEventListener('touchmove',event=>{if(event.cancelable)event.preventDefault();},{passive:false});
+for(const name of ['touchend','touchcancel'])bb.addEventListener(name,event=>{if(event.cancelable)event.preventDefault();if(!event.touches.length)held=false;clearBrakeSelection();},{passive:false});
+document.addEventListener('selectionchange',clearBrakeSelection);
+
 window.addEventListener('blur',()=>pauseGame());document.addEventListener('visibilitychange',()=>{if(document.hidden)pauseGame();});window.addEventListener('pagehide',release);
 function line(points,color='#292a25',width=2){ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.strokeStyle=color;ctx.lineWidth=width;ctx.lineCap='round';ctx.lineJoin='round';ctx.stroke();}
 function ellipse(x,y,rx,ry,fill,stroke='#292a25',lw=2){ctx.beginPath();ctx.ellipse(x,y,rx,ry,0,0,Math.PI*2);if(fill){ctx.fillStyle=fill;ctx.fill();}ctx.strokeStyle=stroke;ctx.lineWidth=lw;ctx.stroke();}
@@ -199,4 +206,4 @@ updateConnection();resize();requestAnimationFrame(tick);
 if(window.desktopApp){document.body.classList.add('desktop');document.querySelectorAll('.browser-note').forEach(el=>el.hidden=true);window.desktopApp.onBeforeQuit(async()=>{pauseGame();await closeDevice();});}
 
 // Keep native long-press menus and text selection off game buttons.
-for(const eventName of ['contextmenu','selectstart'])document.addEventListener(eventName,event=>{if(event.target?.closest?.('button'))event.preventDefault();});
+for(const eventName of ['contextmenu','selectstart'])document.addEventListener(eventName,event=>{const target=event.target?.nodeType===3?event.target.parentElement:event.target;if(target?.closest?.('button'))event.preventDefault();},{capture:true});

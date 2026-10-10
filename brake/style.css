@@ -46,3 +46,7 @@
 button,button *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 button{touch-action:manipulation}
 #brakeButton{touch-action:none}
+
+.dashboard,.dashboard *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+#brakeButton *{pointer-events:none}
+#titleVersion{white-space:nowrap}
